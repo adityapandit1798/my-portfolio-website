@@ -1,18 +1,11 @@
-# Use the official Node.js image
-FROM node:18 AS dev-stage
+# Use an official Nginx image as the base
+FROM nginx:alpine
 
-# Set the working directory
-WORKDIR /app
+# Copy build output to the Nginx HTML folder
+COPY ./dist /usr/share/nginx/html
 
-# Copy package.json and install dependencies
-COPY package*.json ./
-RUN npm install
+# Expose port 80
+EXPOSE 80
 
-# Copy the project files
-COPY . .
-
-# Expose the default Vite port
-EXPOSE 5173
-
-# Start the development server
-CMD ["npm", "run", "dev", "--", "--host"]
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]
