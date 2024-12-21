@@ -21,6 +21,8 @@ import { ProjectsSection } from './components/ProjectsSection';
 import { NotionNotes } from './components/NotionNotes';
 import { ScrollIndicator } from './components/ScrollIndicator';
 import { SocialLinks } from './components/SocialLinks';
+import catImage from './images/cat.jpg'; // Make sure to add a cat image in your images folder
+
 
 function App() {
   const backgroundImages = [car1, car2, car3]; // Array of images
@@ -29,7 +31,7 @@ function App() {
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % backgroundImages.length);
-    }, 3000); // Change image every 2 seconds
+    }, 4000); 
 
     return () => clearInterval(intervalId); // Cleanup interval on component unmount
   }, [backgroundImages.length]);
@@ -42,7 +44,7 @@ function App() {
       homeElement.style.backgroundImage = `url(${backgroundImages[currentImageIndex]})`; // Apply the background
     }
   }, [currentImageIndex]);
-
+ 
   const toggleTheme = () => {
     document.documentElement.classList.toggle('dark');
   };
@@ -50,7 +52,7 @@ function App() {
   return (
     <div className={`min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-200`}>
       <MouseCursor />
-      <Navbar toggleTheme={toggleTheme} />
+      <Navbar toggleTheme={toggleTheme} isDark={false} />
 
       {/* Hero Section */}
       <section id="home" className="min-h-screen pt-16 relative overflow-hidden">
@@ -65,8 +67,13 @@ function App() {
               Hi! i'm Aditya Pandit
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-8">
-              Building scalable and secure cloud solutions
+            3+ years experience | Devops Engineer | AWS Certified Solutions Architect
             </p>
+            {/* Floating Cat Image and Text */}
+        <div className="absolute bottom-6 right-6 text-center flex flex-col items-center space-y-2">
+          <p className="text-sm font-semibold text-gray-800 dark:text-gray-200">Hire me (please)</p>
+          <img src={catImage} alt="Cat" className="w-16 h-16 rounded-full shadow-lg" />
+        </div>
             <SocialLinks />
           </motion.div>
           <Hero3D />
@@ -75,8 +82,8 @@ function App() {
       </section>
 
       {/* Other sections */}
-      <ProjectsSection />
       <AboutSection />
+      <ProjectsSection />
       <WorkExperience />
       <NotionNotes />
     </div>
