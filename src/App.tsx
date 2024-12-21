@@ -49,6 +49,9 @@ function App() {
     document.documentElement.classList.toggle('dark');
   };
 
+  // Typing effect for the text
+  const text = "Hi! I'm Aditya Pandit"; // The text you want to animate
+
   return (
     <div className={`min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-200`}>
       <MouseCursor />
@@ -64,16 +67,25 @@ function App() {
             className="text-center"
           >
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              Hi! i'm Aditya Pandit
+              {/* Typing animation with Framer Motion */}
+              <motion.span
+                initial={{ width: 0 }}
+                animate={{ width: 'auto' }}
+                transition={{ duration: 3, ease: 'easeInOut' }}
+                style={{ overflow: 'hidden', whiteSpace: 'nowrap', display: 'inline-block' }}
+                className="inline-block"
+              >
+                {text}
+              </motion.span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-8">
-            3+ years experience | Devops Engineer | AWS Certified Solutions Architect
+              3+ years experience | Devops Engineer | AWS Certified Solutions Architect
             </p>
             {/* Floating Cat Image and Text */}
-        <div className="absolute bottom-6 right-6 text-center flex flex-col items-center space-y-2">
-          <p className="text-sm font-semibold text-gray-800 dark:text-gray-200">Hire me (please)</p>
-          <img src={catImage} alt="Cat" className="w-16 h-16 rounded-full shadow-lg" />
-        </div>
+            <div className="absolute bottom-6 right-6 text-center flex flex-col items-center space-y-2">
+              <p className="text-sm font-semibold text-gray-800 dark:text-gray-200">Hire me (please)</p>
+              <img src={catImage} alt="Cat" className="w-16 h-16 rounded-full shadow-lg" />
+            </div>
             <SocialLinks />
           </motion.div>
           <Hero3D />
