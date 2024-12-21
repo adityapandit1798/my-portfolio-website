@@ -4,7 +4,8 @@ import react from '@vitejs/plugin-react';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  optimizeDeps: {
-    exclude: ['lucide-react'], // This excludes the 'lucide-react' dependency from optimization
+  base: '/my-portfolio-website/', // The correct base path for GitHub Pages
+  build: {
+    outDir: 'dist', // Output folder for the production build
   },
 });
