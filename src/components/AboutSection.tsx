@@ -1,51 +1,12 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { motion } from 'framer-motion';
 import { skills } from '../data/skills'; // Import updated skills from the data file
 
 export const AboutSection = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
-
   return (
-    <section
-      id="about"
-      ref={containerRef}
-      className="py-20 relative overflow-hidden bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900"
-    >
-      {/* Background Animation */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          animate={{
-            scale: [1, 1.1, 1],
-            rotate: [0, 5, -5, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            repeatType: "reverse",
-          }}
-          className="absolute inset-0 opacity-30 dark:opacity-10"
-          style={{
-            background: "radial-gradient(circle at 50% 50%, #3B82F6 0%, transparent 70%)",
-          }}
-        />
-      </div>
-
+    <section id="about" className="py-20 relative overflow-hidden bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <motion.div
-          style={{ y }}
-          className="grid lg:grid-cols-2 gap-12 items-center"
-        >
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
+        <motion.div className="grid lg:grid-cols-2 gap-12 items-center">
+          <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
             <h2 className="text-3xl font-bold mb-6">About Me</h2>
             <p className="text-gray-600 dark:text-gray-400 mb-8">
               I'm a DevOps Engineer passionate about building and optimizing cloud infrastructure.
@@ -62,21 +23,14 @@ export const AboutSection = () => {
                   transition={{ delay: index * 0.1 }}
                   className="p-4 bg-white dark:bg-gray-800 rounded-xl shadow-lg"
                 >
-                  <skill.icon className="w-8 h-8 text-blue-500 mb-3" />
+                  <skill.icon size={40} className="text-blue-500 mb-3" />
                   <h3 className="font-semibold mb-2">{skill.title}</h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">{skill.description}</p>
                 </motion.div>
               ))}
             </div>
           </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="relative"
-          >
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl">
               <img
                 src="https://images.unsplash.com/photo-1607743386760-88ac62b89b8a?auto=format&fit=crop&w=800&q=80"
                 alt="Profile"
@@ -84,7 +38,6 @@ export const AboutSection = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
             </div>
-          </motion.div>
         </motion.div>
       </div>
     </section>
