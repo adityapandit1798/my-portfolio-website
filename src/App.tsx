@@ -23,7 +23,6 @@ import { ScrollIndicator } from './components/ScrollIndicator';
 import { SocialLinks } from './components/SocialLinks';
 import catImage from './images/cat.jpg'; // Make sure to add a cat image in your images folder
 
-
 function App() {
   const backgroundImages = [car1, car2, car3]; // Array of images
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -44,13 +43,10 @@ function App() {
       homeElement.style.backgroundImage = `url(${backgroundImages[currentImageIndex]})`; // Apply the background
     }
   }, [currentImageIndex]);
- 
+
   const toggleTheme = () => {
     document.documentElement.classList.toggle('dark');
   };
-
-  // Typing effect for the text
-  const text = "Hi! I'm Aditya Pandit"; // The text you want to animate
 
   return (
     <div className={`min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-200`}>
@@ -66,17 +62,8 @@ function App() {
             transition={{ duration: 0.5 }}
             className="text-center"
           >
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              {/* Typing animation with Framer Motion */}
-              <motion.span
-                initial={{ width: 0 }}
-                animate={{ width: 'auto' }}
-                transition={{ duration: 3, ease: 'easeInOut' }}
-                style={{ overflow: 'hidden', whiteSpace: 'nowrap', display: 'inline-block' }}
-                className="inline-block"
-              >
-                {text}
-              </motion.span>
+            <h1 className="text-5xl md:text-7xl font-bold mb-5">
+              Hi! I'm Aditya Pandit
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-8">
               3+ years experience | Devops Engineer | AWS Certified Solutions Architect
