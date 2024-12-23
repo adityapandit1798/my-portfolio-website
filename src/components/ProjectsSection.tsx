@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ProjectCard } from './ProjectCard';
 import { ProjectModal } from './ProjectModal';
-import { projects } from '../data/projects';
+import { projects, Project } from '../data/projects';  // Import the Project type
 
 export const ProjectsSection = () => {
-  const [selectedProject, setSelectedProject] = useState<projects | null>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);  // Correct type here
 
   return (
     <section id="projects" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900">
