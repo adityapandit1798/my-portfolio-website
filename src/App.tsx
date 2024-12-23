@@ -41,7 +41,8 @@ function App() {
     if (homeElement instanceof HTMLElement) {
       homeElement.style.transition = 'background-image 1s ease-in-out'; // Smooth transition
       homeElement.style.backgroundImage = `url(${backgroundImages[currentImageIndex]})`; // Apply the background
-      homeElement.style.backgroundRepeat = `round`
+      homeElement.style.backgroundPosition = `center`
+      homeElement.style.backgroundSize = `cover`
     }
   }, [currentImageIndex]);
 
