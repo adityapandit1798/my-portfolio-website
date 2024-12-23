@@ -15,6 +15,20 @@ import window4 from './images/window4.jpg';
 import window1 from './images/window1.jpg'; 
 import window2 from './images/window2.jpg'; 
 import window3 from './images/window3.jpg'; 
+import earth1 from './images/earth/earth1.jpg';
+import earth2 from './images/earth/earth2.jpg'; 
+import earth3 from './images/earth/earth3.jpg'; 
+import earth4 from './images/earth/earth4.jpg'; 
+import earth5 from './images/earth/earth5.jpg'; 
+import earth6 from './images/earth/earth6.jpg'; 
+import earth7 from './images/earth/earth7.jpg'; 
+import earth8 from './images/earth/earth8.jpg'; 
+import earth9 from './images/earth/earth9.jpg'; 
+import earth10 from './images/earth/earth10.jpg'; 
+import earth11 from './images/earth/earth11.jpg'; 
+import earth12 from './images/earth/earth12.jpg'; 
+import earth13 from './images/earth/earth13.jpg';
+import earth14 from './images/earth/earth14.jpg';  
 import { AboutSection } from './components/AboutSection';
 import { WorkExperience } from './components/WorkExperience';
 import { ProjectsSection } from './components/ProjectsSection';
@@ -24,13 +38,13 @@ import { SocialLinks } from './components/SocialLinks';
 import catImage from './images/cat.jpg'; // Make sure to add a cat image in your images folder
 
 function App() {
-  const backgroundImages = [car1, car2, car3]; // Array of images
+  const backgroundImages = [earth1, earth2, earth3, earth4, earth5, earth6, earth7, earth8, earth9, earth10, earth11, earth12, earth13, earth14,]; // Array of images
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % backgroundImages.length);
-    }, 4000); 
+    }, 1000); 
 
     return () => clearInterval(intervalId); // Cleanup interval on component unmount
   }, [backgroundImages.length]);
