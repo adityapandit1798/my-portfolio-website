@@ -1,91 +1,39 @@
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, Github, Link } from 'lucide-react';
+import { motion } from "framer-motion";
+
+type Project = {
+  id: string;
+  title: string;
+  url: string;
+};
 
 interface ProjectModalProps {
-  project: {
-    title: string;
-    description: string;
-    image: string;
-    tags: string[];
-    github?: string;
-    demo?: string;
-    details: string;
-  } | null;
+  project: Project | null;
   onClose: () => void;
 }
 
-export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
+export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
   if (!project) return null;
 
   return (
-    <AnimatePresence>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        onClick={onClose}
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 50 }}
+        className="bg-white rounded-lg shadow-lg p-4 max-w-3xl w-full"
       >
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0.9, opacity: 0 }}
-          onClick={(e) => e.stopPropagation()}
-          className="bg-white dark:bg-gray-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
-        >
-          <div className="relative h-64">
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full h-full object-cover"
-            />
-            <button
-              onClick={onClose}
-              className="absolute top-4 right-4 p-2 bg-black/20 hover:bg-black/40 rounded-full text-white transition-colors"
-            >
-              <X size={20} />
-            </button>
-          </div>
-          <div className="p-6">
-            <h2 className="text-2xl font-bold mb-4">{project.title}</h2>
-            <p className="text-gray-600 dark:text-gray-400 mb-6">{project.details}</p>
-            <div className="flex flex-wrap gap-2 mb-6">
-              {project.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-700 rounded-full"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <div className="flex gap-4">
-              {project.github && (
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-                >
-                  <Github size={20} />
-                  <span>View Code</span>
-                </a>
-              )}
-              {project.demo && (
-                <a
-                  href={project.demo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
-                >
-                  <Link size={20} />
-                  <span>Live Demo</span>
-                </a>
-              )}
-            </div>
-          </div>
-        </motion.div>
+        <div className="flex justify-between items-center">
+          <h2 className="text-xl font-bold">{project.title}</h2>
+          <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
+            Close
+          </button>
+        </div>
+        <iframe
+          src={project.url}
+          title={project.title}
+          className="mt-4 w-full h-96 border-none rounded"
+        />
       </motion.div>
-    </AnimatePresence>
+    </div>
   );
 };
