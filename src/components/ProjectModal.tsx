@@ -28,11 +28,16 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             Close
           </button>
         </div>
-        <iframe
-          src={project.url}
-          title={project.title}
-          className="mt-4 w-full h-96 border-none rounded"
-        />
+        <div className="mt-4">
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 hover:text-blue-700"
+          >
+            Open Project in Notion
+          </a>
+        </div>
       </motion.div>
     </div>
   );

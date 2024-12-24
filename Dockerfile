@@ -1,27 +1,25 @@
-# Use a Node.js image to install dependencies and build the project
+# Build React App
 FROM node:18-alpine AS build
-
-# Set the working directory for the project
 WORKDIR /app
-
-# Clone the repository (assuming you want to clone a specific repository)
 RUN apk add --no-cache git && \
     git clone https://github.com/adityapandit1798/my-portfolio-website.git .  # Replace with the actual repository URL
-
-# Install dependencies
 RUN npm install
-
-# Build the project using Vite (assuming it's a Vite-based React project)
 RUN npm run build
 
-# Use a distroless Nginx image for serving the built project
-FROM nginx:alpine
+# Run Proxy Server (Node.js) with React App
+FROM node:18-alpine AS server
+WORKDIR /app
 
-# Copy the build output from the build stage to Nginx's HTML folder
-COPY --from=build /app/dist /usr/share/nginx/html
+# Copy the proxy server and React app
+COPY /server/proxy-server.js /app/
+COPY /server/.env /app/
+COPY --from=build /app/dist /app/client-build
 
-# Expose port 80 for the Nginx server
-EXPOSE 80
+# Install dependencies for the proxy server
+RUN npm install express axios cors dotenv
 
-# Start Nginx and keep it running
-CMD ["nginx", "-g", "daemon off;"]
+# Expose proxy port and React port
+EXPOSE 3000 8080 80
+
+# Start the proxy server and React app
+CMD ["sh", "-c", "node proxy-server.js"]

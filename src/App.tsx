@@ -38,13 +38,13 @@ import { SocialLinks } from './components/SocialLinks';
 import catImage from './images/cat.jpg'; // Make sure to add a cat image in your images folder
 
 function App() {
-  const backgroundImages = [earth1, earth2, earth3, earth4, earth5, earth6, earth7, earth8, earth9, earth10, earth11, earth12, earth13, earth14,]; // Array of images
+  const backgroundImages = [car1, car2, car3,]; // Array of images
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % backgroundImages.length);
-    }, 1000); 
+    }, 2000); 
 
     return () => clearInterval(intervalId); // Cleanup interval on component unmount
   }, [backgroundImages.length]);
