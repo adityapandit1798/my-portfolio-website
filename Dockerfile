@@ -11,8 +11,8 @@ FROM node:18-alpine AS server
 WORKDIR /app
 
 # Copy the proxy server and React app
-COPY /server/proxy-server.js /app/
-COPY /server/.env /app/
+COPY /server/proxy-server.mjs /app/
+COPY ./.env /app/
 COPY --from=build /app/dist /app/client-build
 
 # Install dependencies for the proxy server
@@ -22,4 +22,4 @@ RUN npm install express axios cors dotenv
 EXPOSE 3000 8080 80
 
 # Start the proxy server and React app
-CMD ["sh", "-c", "node proxy-server.js"]
+CMD ["sh", "-c", "node proxy-server.mjs"]
