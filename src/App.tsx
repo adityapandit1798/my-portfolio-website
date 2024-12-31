@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Cloud, Github, Linkedin, Mail } from 'lucide-react';
+/* import { Cloud, Github, Linkedin, Mail } from 'lucide-react';*/
 import { MouseCursor } from './components/MouseCursor';
 import { Hero3D } from './components/Hero3D';
 import { Navbar } from './components/Navbar';
 import car1 from './images/car1.jpg'; 
 import car2 from './images/car2.jpg'; 
 import car3 from './images/car3.jpg'; 
-import mac0 from './images/mac0.jpg'; 
+/* import mac0 from './images/mac0.jpg'; 
 import mac1 from './images/mac1.jpg'; 
 import mac2 from './images/mac2.jpg'; 
 import mac3 from './images/mac3.jpg'; 
@@ -28,7 +28,7 @@ import earth10 from './images/earth/earth10.jpg';
 import earth11 from './images/earth/earth11.jpg'; 
 import earth12 from './images/earth/earth12.jpg'; 
 import earth13 from './images/earth/earth13.jpg';
-import earth14 from './images/earth/earth14.jpg';  
+import earth14 from './images/earth/earth14.jpg';   */
 import { AboutSection } from './components/AboutSection';
 import { WorkExperience } from './components/WorkExperience';
 import { ProjectsSection } from './components/ProjectsSection';
