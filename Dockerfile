@@ -1,8 +1,8 @@
 # Build React App
 FROM node:18-alpine AS build
 WORKDIR /app
-#RUN apk add --no-cache git && \
-#    git clone https://github.com/adityapandit1798/my-portfolio-website.git .  # Replace with the actual repository URL
+RUN apk add --no-cache git && \
+    git clone https://github.com/adityapandit1798/my-portfolio-website.git .  # Replace with the actual repository URL
 RUN npm install
 RUN npm run build
 
