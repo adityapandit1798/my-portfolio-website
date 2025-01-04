@@ -1,7 +1,7 @@
 // ../data/skills.ts
-import { FaAws, FaDocker, FaGithub, FaLinux, FaDatabase,  FaJava, FaAndroid, FaApple } from 'react-icons/fa';
-import { DiJenkins, DiGit } from 'react-icons/di'; // DiGit for Git
-import { SiTerraform, SiJenkins, SiDocker, SiKubernetes, SiGithub, SiSonarqube, SiProxmox } from 'react-icons/si'; // Correctly using Si for Terraform, Kubernetes, Docker, etc.
+import { FaAws, FaGithub, FaLinux, FaDatabase,  FaJava, FaAndroid, FaApple } from 'react-icons/fa';
+import {  DiGit } from 'react-icons/di'; // DiGit for Git
+import { SiTerraform, SiJenkins, SiDocker, SiKubernetes,  SiSonarqube, SiProxmox } from 'react-icons/si'; // Correctly using Si for Terraform, Kubernetes, Docker, etc.
 
 export const skills = [
   {

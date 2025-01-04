@@ -1,5 +1,4 @@
 // ../data/howToDos.ts
-import { BookOpen } from 'lucide-react';
 
 export interface Note {
   title: string;

@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { Github, Link } from 'lucide-react';
 
 interface ProjectCardProps {
   project: {
