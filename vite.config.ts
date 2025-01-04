@@ -10,7 +10,7 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  base: '/', // The correct base path for GitHub Pages
+  base: '/dist', // The correct base path for GitHub Pages
   build: {
     outDir: 'dist', // Output folder for the production build
   },

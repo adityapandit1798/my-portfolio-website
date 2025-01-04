@@ -1,8 +1,8 @@
 # Build React App
 FROM node:18-alpine AS build
 WORKDIR /app
-RUN apk add --no-cache git && \
-    git clone https://github.com/adityapandit1798/my-portfolio-website.git .  # Replace with the actual repository URL
+#RUN apk add --no-cache git && \
+#    git clone https://github.com/adityapandit1798/my-portfolio-website.git .  # Replace with the actual repository URL
 RUN npm install
 RUN npm run build
 
@@ -16,7 +16,7 @@ COPY ./.env /app/
 COPY --from=build /app/dist /app/client-build
 
 # Install dependencies for the proxy server
-RUN npm install express axios cors dotenv
+RUN npm install express axios cors dotenv node-fetch
 
 # Expose proxy port and React port
 EXPOSE 3000 8080 80
