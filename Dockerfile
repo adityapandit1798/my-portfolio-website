@@ -5,7 +5,7 @@ FROM node:18 AS build
 WORKDIR /app
 
 # Clone the repository (assuming it's in a GitHub repo)
-RUN git clone <repository_url> .
+RUN git clone https://github.com/adityapandit1798/my-portfolio-website.git .
 
 # Install dependencies
 RUN npm install
@@ -13,17 +13,29 @@ RUN npm install
 # Build the app
 RUN npm run build
 
-# Stage 2: Serve the app with Nginx
+# Stage 2: Serve the React app with Nginx
 FROM nginx:latest
 
-# Copy the build output from the previous stage to Nginx's public folder
+# Copy the build output from the previous stage to the Nginx public folder
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# Copy the custom Nginx configuration file (optional)
-# COPY nginx.conf /etc/nginx/nginx.conf
-
-# Expose port 80 for the app to be accessible
+# Expose port 80 to access the app
 EXPOSE 80
 
-# Run Nginx server
 CMD ["nginx", "-g", "daemon off;"]
+
+# Stage 3: Run the proxy server (optional stage)
+FROM node:18 AS proxy
+
+WORKDIR /proxy
+
+# Assuming you have a 'server' folder with the proxy server code
+COPY server /proxy
+
+# Install dependencies
+RUN npm install
+
+# Expose the proxy server port (use the port you need)
+EXPOSE 4000
+
+CMD ["node", "proxy-server.mjs"]
