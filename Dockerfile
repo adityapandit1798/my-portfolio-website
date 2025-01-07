@@ -1,25 +1,29 @@
-# Build React App
-FROM node:18-alpine AS build
+# Stage 1: Build the React app
+FROM node:18 AS build
+
+# Set the working directory in the container
 WORKDIR /app
-RUN apk add --no-cache git && \
-    git clone https://github.com/adityapandit1798/my-portfolio-website.git .  # Replace with the actual repository URL
+
+# Clone the repository (assuming it's in a GitHub repo)
+RUN git clone <repository_url> .
+
+# Install dependencies
 RUN npm install
+
+# Build the app
 RUN npm run build
 
-# Run Proxy Server (Node.js) with React App
-FROM node:18-alpine AS server
-WORKDIR /app
+# Stage 2: Serve the app with Nginx
+FROM nginx:latest
 
-# Copy the proxy server and React app
-COPY /server/proxy-server.mjs /app/
-COPY ./.env /app/
-COPY --from=build /app/dist /app/client-build
+# Copy the build output from the previous stage to Nginx's public folder
+COPY --from=build /app/dist /usr/share/nginx/html
 
-# Install dependencies for the proxy server
-RUN npm install express axios cors dotenv node-fetch
+# Copy the custom Nginx configuration file (optional)
+# COPY nginx.conf /etc/nginx/nginx.conf
 
-# Expose proxy port and React port
-EXPOSE 3000 8080 80
+# Expose port 80 for the app to be accessible
+EXPOSE 80
 
-# Start the proxy server and React app
-CMD ["sh", "-c", "node proxy-server.mjs"]
+# Run Nginx server
+CMD ["nginx", "-g", "daemon off;"]
