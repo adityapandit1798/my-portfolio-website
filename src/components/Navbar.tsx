@@ -19,7 +19,7 @@ export const Navbar = ({ toggleTheme, isDark }: { toggleTheme: () => void; isDar
 
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
-              {['Home', 'About', 'Projects', 'Notes', 'Contact'].map((item) => (
+              {['Home', 'About', 'Projects', 'Experience', 'Blogs', 'Contact'].map((item) => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
