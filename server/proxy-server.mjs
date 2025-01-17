@@ -7,7 +7,7 @@ import fetch from 'node-fetch';
 const app = express();
 
 // Load environment variables from the .env file
-dotenv.config({ path: path.resolve('../.env') });
+dotenv.config({ path: path.resolve('./.env') });
 
 const PORT = 8080;
 const NOTION_API_KEY = process.env.NOTION_API_KEY;
