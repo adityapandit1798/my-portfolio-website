@@ -5,6 +5,9 @@ import path from 'path';
 import fetch from 'node-fetch';
 
 const app = express();
+app.use(cors({
+  origin: "http://localhost:5173", // Or whatever your frontend runs on
+}));
 
 // Load environment variables from the .env file
 dotenv.config({ path: path.resolve('../.env') });
